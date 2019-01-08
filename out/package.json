@@ -1,0 +1,15 @@
+{
+  "name": "email-to-sms",
+  "version": "1.0.0",
+  "description": "AWS Lambda: email to SMS gateway.",
+  "main": "index.js",
+  "dependencies": {
+    "mailparser": "^2.4.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mark Challoner <mark.a.r.challoner@gmail.com>",
+  "license": "ISC"
+}

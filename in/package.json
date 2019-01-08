@@ -1,0 +1,15 @@
+{
+  "name": "sms-to-email",
+  "version": "1.0.0",
+  "description": "Twilio Function: SMS to email gateway.",
+  "main": "index.js",
+  "dependencies": {
+    "nodemailer": "^5.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mark Challoner <mark.a.r.challoner@gmail.com>",
+  "license": "ISC"
+}
