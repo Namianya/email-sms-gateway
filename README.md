@@ -45,7 +45,16 @@ steps have to be done manually:
 
 ### Outgoing (email to SMS gateway)
 
-Outgoing messaging (email to SMS) is provided by [AWS] and [Twilio].
+Outgoing SMS (email to SMS) is provided by [AWS] and [Twilio].
+
+Outgoing email (email replies) is provided by [Gmail]. When sending a SMS
+message:
+
+* errors are sent to the sender email,
+* a successful SMS is confirmed and copied back to a separate reply email.
+
+The reply email can be a group email address which allows visibility of sent SMS
+messages to the members of that group.
 
 Twilio requires a full account to send SMS messages to any number other than the
 verified number.
@@ -53,6 +62,7 @@ verified number.
 Requirements:
 
 * [AWS] account
+* [Gmail] account
 * [Twilio] full account
 * Domain name (for incoming email)
 
@@ -171,14 +181,19 @@ Steps:
     * Name: `email-to-sms`
     * Require-TLS: Ticked
 * Add the environmental variables:
-    * `EMAIL_FROM`: a semicolon separated list of emails authorised to send 
-   SMSes (e.g. `me@gmail.com;me@hotmail.com`)
+    * `EMAIL_FORWARD_FROM`: a semicolon separated list of emails authorised t
+    send SMSes (e.g. `me@gmail.com;me@hotmail.com`)
     * `EMAIL_KEY`: a key appended to the send email to authorise sending SMSes 
     (e.g. `password` used in the To email like
     `+4470000123456-password@sms.domain.com`)
+    * `EMAIL_PASSWORD`: the Gmail app password
+    * `EMAIL_REPLY_FROM`: the email to send confirmations from (e.g.
+    `no-reply@sms.domain.com`)
+    * `EMAIL_REPLY_TO`: the email to send confirmations (e.g. `group@gmail.com`)
     * `S3_BUCKET`: the S3 bucket storing to store incoming emails and email-ids
     (e.g. `email-to-sms`) 
-    * `SMS_FROM`: the Twilio sender number (e.g `+44070000123456`)   
+    * `SMS_ENABLED`: `1` or `true` to enable SMS sending
+    * `SMS_FROM`: the Twilio sender number (e.g `+44070000123456`)
     * `SMS_PASSWORD`: the Twilio Auth Token
     * `SMS_USERNAME`: the Twilio Account SID 
 * Deploy the [AWS Lambda function]:
